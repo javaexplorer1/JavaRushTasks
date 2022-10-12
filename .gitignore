@@ -12,7 +12,6 @@ target/
 *.properties
 *.jar
 
-
 /5.OnlineInternship/
 /out/
 /JavaRushPlugin.properties
