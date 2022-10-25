@@ -20,6 +20,11 @@ public class Solution {
             Arrays.fill(field[i], empty);
         }
         for (int i = 0; i < field.length; i++) {
+            int j = (int) (Math.random() * width);
+            field[i][j] = robotank;
+
+        }
+        for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < width; j++) {
                 System.out.print(field[i][j]);
             }
