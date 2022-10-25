@@ -13,17 +13,30 @@ public class Solution {
     public static int width = 30;
     public static int height = 10;
     public static String[][] field = new String[height][width];
+    public static int[][] bombs = new int[height][width];
 
 
     public static void main(String[] args) {
         for (int i = 0; i < field.length; i++) {
             Arrays.fill(field[i], empty);
         }
+
         for (int i = 0; i < field.length; i++) {
             int j = (int) (Math.random() * width);
             field[i][j] = robotank;
+        }
+
+        for (int i = 0; i < bombs.length; i++) {
+            for (int j = 0; j < 10;) {
+                int k = (int) (Math.random() * width);
+                if (bombs[i][k] == 0) {
+                    bombs[i][k] = 1;
+                    j++;
+                }
+            }
 
         }
+
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < width; j++) {
                 System.out.print(field[i][j]);
