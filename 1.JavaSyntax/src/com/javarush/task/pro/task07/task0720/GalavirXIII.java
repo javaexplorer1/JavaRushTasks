@@ -7,7 +7,7 @@ public class GalavirXIII {
     public void defend (double defend) {
         health = health - superWeapon / defend;
     }
-
+    
     public int attack() {
         return superWeapon;
     }
