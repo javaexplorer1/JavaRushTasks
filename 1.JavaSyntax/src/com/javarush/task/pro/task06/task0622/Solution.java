@@ -22,6 +22,7 @@ public class Solution {
     public static void main(String[] args) {
         diabloPosition = getRandomNumber(4);
         findDiablo();
+        battle();
 
     }
 
@@ -42,6 +43,19 @@ public class Solution {
             }
         }
     }
+
+    public static void battle() {
+        while (amigoLives > 0 && diabloLives > 0) {
+            if (amigoAttacks() != diabloDefends()) {
+                diabloLostLife();
+                System.out.println(amigoAttackPhrase);
+            } else {
+                amigoLostLife();
+                System.out.println(diabloDefendPhrase);
+            }
+        }
+    }
+
     public static void amigoLostLife() {
         amigoLives--;
     }
@@ -54,4 +68,6 @@ public class Solution {
     public static int diabloDefends() {
         return getRandomNumber(3);
     }
+
+
 }
