@@ -20,7 +20,16 @@ public class BattleField {
             int attackGalavir = galavir.attack();
             nimrod.defend(attackGalavir);
             System.out.println("Nimrod health = " + nimrod.health);
-        } while (isNimrodAlive(nimrod));
+            if (isNimrodAlive(nimrod)) {
+                System.out.println(nimrodAttack);
+                int nimrodAttack = nimrod.attack();
+                galavir.defend(nimrodAttack);
+                System.out.println("Galavir health = " + galavir.health);
+            } else {
+                break;
+            }
+        } while (isGalavirAlive(galavir));
+
     }
 
     public static boolean isNimrodAlive(Nimrod nimrod) {
