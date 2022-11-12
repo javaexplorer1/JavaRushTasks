@@ -15,6 +15,8 @@ public class Pair {
     }
 
     public void swap() {
-        //напишите тут ваш код
+        int temp = x ^ y;
+        x = y;
+        y = temp ^ x;
     }
 }
