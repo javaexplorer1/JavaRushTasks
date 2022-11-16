@@ -15,7 +15,7 @@ public class Pepl {
         System.out.println(Arrays.toString(robots));
 
         distributeBatteries(robots);
-
+        // this is comment
         System.out.println(Arrays.toString(robots));
     }
 
