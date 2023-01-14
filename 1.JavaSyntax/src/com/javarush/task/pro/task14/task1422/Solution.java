@@ -15,16 +15,11 @@ public class Solution {
 
     public static void printDNA() {
         List<StackTraceElement[]> elements = getDNA();
-        int count = 0;
         for (StackTraceElement[] elementStackTrace : elements) {
-            System.out.println("count: " + count);
-            for (int i = 0; i < elementStackTrace.length; i++) {
-                System.out.println("i: " + i + " File name: " + elementStackTrace[i].getFileName()
-                        + ", Method name: " + elementStackTrace[i].getMethodName()
-                        + ", Line number: " + elementStackTrace[i].getLineNumber());
-            }
-            count++;
-            System.out.println();
+            System.out.println("File name: " + elementStackTrace[1].getFileName()
+                        + ", Method name: " + elementStackTrace[1].getMethodName()
+                        + ", Line number: " + elementStackTrace[1].getLineNumber());
+
         }
     }
 
