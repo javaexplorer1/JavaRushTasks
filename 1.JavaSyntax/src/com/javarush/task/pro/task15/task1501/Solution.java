@@ -9,12 +9,14 @@ import java.io.InputStreamReader;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-             BufferedReader reader = new BufferedReader(inputStreamReader)) {
             String line = reader.readLine();
             System.out.println(line.toLowerCase());
+
+        } catch (IOException e) {
+            System.out.println("Something went wrong : " + e);
         }
     }
 }
