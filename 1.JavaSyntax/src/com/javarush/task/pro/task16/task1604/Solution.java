@@ -16,8 +16,9 @@ public class Solution {
     }
 
     static String getDayOfWeek(Calendar calendar) {
-        String [] daysOfWeek = new String[] {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
-        int day = calendar.getTime().getDay();
+        String [] daysOfWeek = new String[] {"Воскресенье", "Понедельник", "Вторник",
+                "Среда", "Четверг", "Пятница", "Суббота"};
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
         return daysOfWeek[day];
     }
 }
