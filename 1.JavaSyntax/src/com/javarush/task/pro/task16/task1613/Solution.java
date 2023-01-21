@@ -36,8 +36,7 @@ public class Solution {
     public static boolean isWeekend(LocalDateTime dateTime) {
         int dayOfWeek = dateTime.getDayOfWeek().getValue();
         int time = dateTime.getHour();
-        boolean dayCond = ((dayOfWeek == FRIDAY) & (time >= WEEKEND_START_FRIDAY_CUT_OFF_HOUR)) || (dayOfWeek == SATURDAY)
+        return ((dayOfWeek == FRIDAY) & (time >= WEEKEND_START_FRIDAY_CUT_OFF_HOUR)) || (dayOfWeek == SATURDAY)
                 || ((dayOfWeek == SUNDAY) & (time < WEEKEND_END_SUNDAY_CUT_OFF_HOUR));
-        return dayCond;
     }
 }
