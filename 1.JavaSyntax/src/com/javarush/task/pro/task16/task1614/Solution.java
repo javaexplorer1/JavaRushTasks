@@ -15,17 +15,14 @@ public class Solution {
     }
 
     static Instant getMaxFromMilliseconds() {
-        Instant instant = Instant.ofEpochMilli(Long.MAX_VALUE);              //Instant.MAX.getEpochSecond() / 1000);
-        return instant;
+        return Instant.ofEpochMilli(Long.MAX_VALUE);
     }
 
     static Instant getMaxFromSeconds() {
-        Instant instant = Instant.ofEpochSecond(Instant.MAX.getEpochSecond());
-        return instant;
+        return Instant.ofEpochSecond(Instant.MAX.getEpochSecond());
     }
 
     static Instant getMaxFromSecondsAndNanos() {
-        Instant instant = Instant.ofEpochSecond(Instant.MAX.getEpochSecond(), 999999999);
-        return instant;
+        return Instant.ofEpochSecond(Instant.MAX.getEpochSecond(), Instant.MAX.getNano());
     }
 }
