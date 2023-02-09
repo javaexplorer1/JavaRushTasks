@@ -26,8 +26,8 @@ public class Solution {
     }
 
     public static boolean hasExpiredProduct(Stream<Product> productStream) {
-
-        return productStream.anyMatch(product -> product.getExpirationDate().isBefore(LocalDate.now()));
+        //напишите тут ваш код
+        return false;
     }
 }
 
