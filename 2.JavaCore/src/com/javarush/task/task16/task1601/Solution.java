@@ -4,7 +4,7 @@ package com.javarush.task.task16.task1601;
 My first thread
 */
 
-public class Solution {
+/*public class Solution {
     public static void main(String[] args) {
         TestThread task = new TestThread();
         new Thread(task).start();
@@ -16,5 +16,21 @@ public class Solution {
         public void run() {
             System.out.println("My first thread");
         }
+    }
+}*/
+
+
+public class Solution implements Runnable{
+
+    public void run() {
+        System.out.println("My first thread");
+    }
+
+    public static void main(String[] args) {
+        Solution task = new Solution();
+        new Thread(task).start();
+        new Thread(task).start();
+        new Thread(task).start();
+
     }
 }
