@@ -38,7 +38,7 @@ public class Solution {
         @Override
         public void run() {
             for (int index = 0; index < 1000; index++) {
-                Solution.Note.addNote(getName()+"-Note"+index);
+                Note.addNote(getName()+"-Note"+index);
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
