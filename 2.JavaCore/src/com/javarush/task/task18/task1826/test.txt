@@ -1,0 +1,2 @@
+I love Java.
+I love Java too.
