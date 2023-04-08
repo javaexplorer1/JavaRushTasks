@@ -3,7 +3,10 @@ package com.javarush.task.task19.task1920;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 
@@ -12,7 +15,7 @@ import java.util.TreeMap;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+    public static void main1(String[] args) throws IOException {
         Map<String, Double> map = new TreeMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
             while (reader.ready()) {
@@ -29,5 +32,20 @@ public class Solution {
                 System.out.println(entry.getKey());
             }
         }
+        map.entrySet().stream()
+                .filter(entry -> Objects.equals(entry.getValue(), map.values().stream().max(Double::compare).orElseThrow()))
+                .forEach(entry -> System.out.println(entry.getKey()));
+    }
+
+    public static void main(String[] args) throws IOException {
+        Map<String, Double> map = new TreeMap<>();
+
+        Files.readAllLines(Paths.get(args[0])).stream()
+                .map(e -> e.split(" "))
+                .forEach(strings -> map.merge(strings[0], Double.parseDouble(strings[1]), Double::sum));
+
+        map.entrySet().stream()
+                .filter(entry -> Objects.equals(entry.getValue(), map.values().stream().max(Double::compare).orElseThrow()))
+                .forEach(entry -> System.out.println(entry.getKey()));
     }
 }
