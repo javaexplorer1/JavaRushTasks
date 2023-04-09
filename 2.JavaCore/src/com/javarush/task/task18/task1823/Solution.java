@@ -1,10 +1,7 @@
 package com.javarush.task.task18.task1823;
 
 import java.io.*;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /* 
 Нити и байты
@@ -46,14 +43,24 @@ public class Solution {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+ /*           Без определения наименьшего
             Integer max = map.values().stream().max(Comparator.comparingInt(x -> x)).get();
             for (Map.Entry<Integer, Integer> pair : map.entrySet()) {
                 if (Objects.equals(pair.getValue(), max)) {
                     resultMap.put(fileName, pair.getKey());
                     break;
                 }
+            }*/
 
+            Integer max = map.values().stream().max(Comparator.comparingInt(x -> x)).orElse(null);  // а не .get();
+            List<Integer> list = new ArrayList<>();
+            for (Map.Entry<Integer, Integer> pair : map.entrySet()) {
+                if (Objects.equals(pair.getValue(), max)) {
+                    list.add(pair.getKey());
+                }
             }
+            list.sort(Comparator.comparingInt(x -> x));
+            resultMap.put(fileName, list.get(0));
         }
     }
 }
