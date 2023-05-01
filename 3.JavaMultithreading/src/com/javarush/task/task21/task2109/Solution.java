@@ -25,6 +25,11 @@ public class Solution {
         }
 
         @Override
+        protected Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+
+        @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -60,20 +65,32 @@ public class Solution {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            if (!super.equals(o)) return false;
+
             B b = (B) o;
             return Objects.equals(name, b.name);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(super.hashCode(), name);
+            return Objects.hash(name);
         }
     }
 
     public static class C extends B implements Cloneable {
+
+        int i;
+        int j;
+        String name;
+
         public C(int i, int j, String name) {
             super(i, j, name);
+        }
+
+        @Override
+        protected C clone() throws CloneNotSupportedException {
+            C c = new C(i, j, name);
+
+            return c;
         }
     }
 
@@ -81,18 +98,7 @@ public class Solution {
 
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
+
 }
