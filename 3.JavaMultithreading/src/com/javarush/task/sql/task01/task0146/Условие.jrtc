@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task01.task0146"\n\ntask0146
 
-Выбрать все колонки (используй *) из таблицы parts, у которых значение поля description равное NULL И значение поля required равное true
+Выбрать все колонки (используй *) из таблицы parts, у которых значение поля description равное
+NULL И значение поля required равное true
 
 
 Требования:
