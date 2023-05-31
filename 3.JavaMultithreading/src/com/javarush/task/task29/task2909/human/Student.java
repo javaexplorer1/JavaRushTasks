@@ -10,13 +10,16 @@ public class Student extends Human {
     private String university;
     private Date beginningOfSession;
     private Date endOfSession;
+    private int course;
 
     public Student(String name, int age, double averageGrade) {
         super(name, age);
         this.averageGrade = averageGrade;
     }
 
-
+    public int getCourse() {
+        return course;
+    }
 
     public void live() {
         learn();

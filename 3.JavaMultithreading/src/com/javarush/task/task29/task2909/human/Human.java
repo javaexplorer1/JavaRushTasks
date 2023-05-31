@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Human {
+public class Human implements Alive {
     public static int nextId = 0;
     private int id;
     protected int age;
     protected String name;
-    protected int course;
+
 
     protected int[] size;
 
@@ -30,6 +30,9 @@ public class Human {
         nextId++;
     }
 
+    public void live(){
+
+    }
     public List<Human> getChildren() {
         return Collections.unmodifiableList(children);
     }
@@ -59,11 +62,7 @@ public class Human {
         this.name = name;
     }
 
-    public int getCourse() {
-        return course;
-    }
-
-    public int getId() {
+     public int getId() {
         return id;
     }
 
