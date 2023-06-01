@@ -18,9 +18,19 @@ public class Car {
     private boolean driverAvailable;
     private int numberOfPassengers;
 
-    public Car(int type, int numberOfPassengers) {
+    protected Car(int type, int numberOfPassengers) {
         this.type = type;
         this.numberOfPassengers = numberOfPassengers;
+    }
+
+    public static Car create(int type, int numberOfPassengers){
+        if (type == 0) {
+            return new Truck(numberOfPassengers);
+        } else if (type == 1) {
+            return new Sedan(numberOfPassengers);
+        } else if (type == 2) {
+            return new Cabriolet(numberOfPassengers);
+        } else return null;
     }
 
     public int fill(double numberOfLiters) {
