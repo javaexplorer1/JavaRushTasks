@@ -1,8 +1,8 @@
 -- Write your code here:
 SELECT
-CASE position
-    WHEN 'backend developer' THEN 'yes'
-    WHEN 'frontend developer' THEN 'yes'
+CASE
+    WHEN position = 'backend developer' THEN 'yes'
+    WHEN position = 'frontend developer' THEN 'yes'
     ELSE 'no'
 END
 FROM employee
