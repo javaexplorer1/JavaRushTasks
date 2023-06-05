@@ -1,2 +1,3 @@
 -- Write your code here:
-SELECT COUNT(*) AS year_of_birth FROM employee WHERE date_of_birth = 1990;
+SELECT YEAR(date_of_birth) AS year_of_birth, COUNT(*)
+FROM employee GROUP BY YEAR(date_of_birth);
