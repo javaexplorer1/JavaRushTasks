@@ -1,2 +1,2 @@
 -- Write your code here:
-SELECT COUNT(*) FROM students WHERE is_full_time = 'no' OR is_full_time = 'yes';
+SELECT is_full_time, COUNT(*) FROM students GROUP BY is_full_time;
