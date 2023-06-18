@@ -1,2 +1,2 @@
 -- Write your code here:
-SELECT department, position, COUNT(*) AS total FROM employee HAVING total = 1 LIMIT 1;
+SELECT department, position, COUNT(*) AS total FROM employee GROUP BY department, position HAVING total = 1 LIMIT 1;
