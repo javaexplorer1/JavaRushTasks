@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FakeModel implements Model{
-
     private ModelData modelData = new ModelData();
 
     @Override
