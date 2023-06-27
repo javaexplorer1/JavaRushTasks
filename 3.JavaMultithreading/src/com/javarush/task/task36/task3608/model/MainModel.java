@@ -21,4 +21,10 @@ public class MainModel implements Model{
         List<User> users = userService.getUsersBetweenLevels(1, 100);
         modelData.setUsers(users);
     }
+
+    @Override
+    public void loadDeletedUsers() {
+        List<User> users = userService.getAllDeletedUsers();
+        modelData.setUsers(users);
+    }
 }
