@@ -3,4 +3,4 @@ SELECT retailer.name AS ret_name,
        retailer.hq_location AS ret_location,
        supplier.name AS sup_name
 FROM top_retailers AS retailer, suppliers AS supplier
-WHERE supplier.annual_revenue_billions > 100;
+WHERE retailer.annual_revenue_billions > 100;
