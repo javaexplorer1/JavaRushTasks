@@ -3,7 +3,7 @@ package com.javarush.task.task36.task3608.view;
 import com.javarush.task.task36.task3608.controller.Controller;
 import com.javarush.task.task36.task3608.model.ModelData;
 
-public class UsersView implements View{
+public class UsersView implements View {
     private Controller controller;
 
     @Override
@@ -13,7 +13,7 @@ public class UsersView implements View{
 
     @Override
     public void refresh(ModelData modelData) {
-        System.out.println("All users:");
+        System.out.println("All " + (modelData.isDisplayDeletedUserList() ? "deleted " : "") + "users:");
         modelData.getUsers().forEach(user -> System.out.println("\t" + user));
         System.out.println("===================================================");
     }
