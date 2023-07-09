@@ -1,2 +1,2 @@
 -- Write your code here:
-SELECT name, position FROM employee WHERE DAYNASME(day_birth) = 'понедельник'ж
+SELECT name, position FROM employee WHERE DAYNAME(day_birth) = 'понедельник';
