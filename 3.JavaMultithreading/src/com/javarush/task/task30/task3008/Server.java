@@ -64,6 +64,7 @@ public class Server {
                 ConsoleHelper.writeMessage("Ошибка ввода имени пользователя");
                 return serverHandshake(connection);
             }
+
         }
 
         private void notifyUsers(Connection connection, String userName) throws IOException {
