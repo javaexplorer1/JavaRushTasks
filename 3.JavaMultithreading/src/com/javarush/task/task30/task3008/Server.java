@@ -47,5 +47,22 @@ public class Server {
             this.socket = socket;
         }
 
+        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+            connection.send(new Message(MessageType.NAME_REQUEST, "Введите ваше имя"));
+            Message message = connection.receive();
+            String userName = message.getData();
+            if (message.getType() == MessageType.USER_NAME &&
+                    userName != null &&
+                    userName != "" &&
+                    !connectionMap.containsKey(userName)) {
+                connectionMap.put(userName, connection);
+                connection.send(new Message(MessageType.NAME_ACCEPTED, "Добро пожаловать в чат!"));
+                return userName;
+            } else {
+                ConsoleHelper.writeMessage("Ошибка ввода имени пользователя");
+                return serverHandshake(connection);
+            }
+
+        }
     }
 }
