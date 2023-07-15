@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Server {
@@ -63,6 +64,15 @@ public class Server {
                 return serverHandshake(connection);
             }
 
+        }
+
+        private void notifyUsers(Connection connection, String userName) throws IOException {
+            Set<String> names = connectionMap.keySet();
+            for (String name : names) {
+                if (!name.equals(userName)) {
+                    connection.send(new Message(MessageType.USER_ADDED, name));
+                }
+            }
         }
     }
 }
