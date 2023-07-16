@@ -1,5 +1,5 @@
 -- Write your code here:
-SELECT CONCAT(city, '-', LENGTH(city))
+SELECT city
 FROM cities
-ORDER BY LENGTH(city)
+ORDER BY CHAR_LENGTH(city) DESC
 LIMIT 3;
