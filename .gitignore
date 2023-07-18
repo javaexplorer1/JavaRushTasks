@@ -13,7 +13,7 @@ target/
 *.jar
 
 
-/5.OnlineInternship/
+
 /out/
 /JavaRushPlugin.properties
 /Instruction.png
