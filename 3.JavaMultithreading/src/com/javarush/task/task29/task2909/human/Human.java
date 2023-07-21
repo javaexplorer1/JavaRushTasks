@@ -1,17 +1,28 @@
 package com.javarush.task.task29.task2909.human;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Human implements Alive {
     private static int nextId = 0;
+    @Getter
     private int id;
+
+    @Getter
+    @Setter
     protected int age;
+    @Getter
+    @Setter
     protected String name;
 
     protected Size size;
 
+    @Getter
+    @Setter
     private BloodGroup bloodGroup;
 
     private List<Human> children = new ArrayList<>();
@@ -25,40 +36,11 @@ public class Human implements Alive {
         nextId++;
     }
 
-    public void live(){
-
+    public void live() {
     }
+
     public List<Human> getChildren() {
         return Collections.unmodifiableList(children);
-    }
-
-    public void setBloodGroup(BloodGroup bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
-
-    public BloodGroup getBloodGroup() {
-        return bloodGroup;
-    }
-
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-     public int getId() {
-        return id;
     }
 
     public void printSize() {
@@ -84,7 +66,5 @@ public class Human implements Alive {
     public static class Size {
         public int height;
         public int weight;
-
     }
-
 }
