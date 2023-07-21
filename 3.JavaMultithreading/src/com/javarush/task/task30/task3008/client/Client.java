@@ -61,9 +61,9 @@ public class Client {
                 if (string.equalsIgnoreCase("exit")) {
                     break;
                 } else {
-                   if (shouldSendTextFromConsole()) {
-                       sendTextMessage(string);
-                   }
+                    if (shouldSendTextFromConsole()) {
+                        sendTextMessage(string);
+                    }
                 }
             }
         } else {
@@ -85,6 +85,7 @@ public class Client {
         protected void informAboutAddingNewUser(String userName) {
             ConsoleHelper.writeMessage("Участник с именем " + userName + "присоединился к чату");
         }
+
         protected void informAboutDeletingNewUser(String userName) {
             ConsoleHelper.writeMessage("Участник с именем " + userName + "покинул чат");
         }
@@ -93,6 +94,38 @@ public class Client {
             Client.this.clientConnected = clientConnected;
             synchronized (Client.this) {
                 Client.this.notify();
+            }
+        }
+
+        protected void clientHandshake() throws IOException, ClassNotFoundException {
+            while (true) {
+                MessageType messageType = connection.receive().getType();
+                if (messageType == MessageType.NAME_REQUEST) {
+                    String userName = getUserName();
+                    connection.send(new Message(MessageType.USER_NAME, userName));
+                } else if (messageType == MessageType.NAME_ACCEPTED) {
+                    notifyConnectionStatusChanged(true);
+                    return;
+                } else {
+                    throw new IOException("Unexpected MessageType");
+                }
+            }
+        }
+
+        protected void clientMainLoop() throws IOException, ClassNotFoundException {
+            while (true) {
+                Message message = connection.receive();
+                MessageType messageType = message.getType();
+                String data = message.getData();
+                if (messageType == MessageType.TEXT) {
+                    processIncomingMessage(data);
+                } else if (messageType == MessageType.USER_ADDED) {
+                    informAboutAddingNewUser(data);
+                } else if (messageType == MessageType.USER_REMOVED) {
+                    informAboutDeletingNewUser(data);
+                } else {
+                    throw new IOException("Unexpected MessageType");
+                }
             }
         }
 
