@@ -1,5 +1,5 @@
 -- Write your code here:
-SELECT publisher.name AS name
+SELECT DISTINCT publisher.name AS name
 FROM publisher
 WHERE publisher.id IN
       (SELECT publisher.id FROM publisher JOIN book ON publisher.id = book.publisher_id
