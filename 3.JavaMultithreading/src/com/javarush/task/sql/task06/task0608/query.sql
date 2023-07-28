@@ -1,3 +1,3 @@
 -- Write your code here:
-INSERT INTO customers (id, name, address)
+INSERT INTO customers
 SELECT * FROM suppliers;
