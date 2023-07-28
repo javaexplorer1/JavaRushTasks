@@ -1,4 +1,4 @@
 -- Write your code here:
-UPDATE employee SET
-    salary = salary + 500
+UPDATE employee
+SET salary = salary + 500
 WHERE position = 'manager';
