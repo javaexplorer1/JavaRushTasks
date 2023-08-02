@@ -5,9 +5,9 @@ CREATE TABLE `event`
     `user_id`   INT         not null,
     `type`      VARCHAR(20) not null,
     `status`    VARCHAR(10) not null,
-    PRIMARY KEY(id),
-    -- Write your code here:
-
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES user(id)
 );
 
 insert into event (id, date, user_id, type, status)
