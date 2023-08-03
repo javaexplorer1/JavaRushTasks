@@ -17,6 +17,15 @@ public class Hippodrome {
         return horses;
     }
 
+    public void run() {
+
+    }
+    public void move() {
+
+    }
+    public void print() {
+
+    }
 
     public static void main(String[] args) {
         List<Horse> horses = new ArrayList<>();
