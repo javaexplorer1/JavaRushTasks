@@ -40,11 +40,12 @@ public class Hippodrome {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         List<Horse> horses = new ArrayList<>();
         horses.add(new Horse("Key", 3, 0));
         horses.add(new Horse("Arrow", 3, 0));
         horses.add(new Horse("Victory", 3, 0));
         game = new Hippodrome(horses);
+        game.run();
     }
 }
