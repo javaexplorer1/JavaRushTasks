@@ -32,7 +32,12 @@ public class Hippodrome {
 
     }
     public void print() {
-        
+        for (Horse hors : horses) {
+            hors.print();
+        }
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
