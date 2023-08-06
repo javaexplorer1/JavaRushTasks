@@ -1,6 +1,8 @@
 package com.javarush.task.task21.task2113;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Hippodrome {
@@ -40,6 +42,16 @@ public class Hippodrome {
         }
     }
 
+    public Horse getWinner() {
+        horses.sort(Comparator.comparingDouble(Horse::getDistance));
+        Collections.reverse(horses);
+        return horses.get(0);
+
+    }
+    public void printWinner() {
+        System.out.print("Winner is " + getWinner().getName() + "!");
+    }
+
     public static void main(String[] args) throws InterruptedException {
         List<Horse> horses = new ArrayList<>();
         horses.add(new Horse("Key", 3, 0));
@@ -47,5 +59,13 @@ public class Hippodrome {
         horses.add(new Horse("Victory", 3, 0));
         game = new Hippodrome(horses);
         game.run();
+
+//        game.getWinner();
+//        game.printWinner();
+//        System.out.println("===============");
+//
+//        for (Horse hors : horses) {
+//            System.out.println(hors.getName() + "\t" + hors.getDistance());
+//        }
     }
 }
