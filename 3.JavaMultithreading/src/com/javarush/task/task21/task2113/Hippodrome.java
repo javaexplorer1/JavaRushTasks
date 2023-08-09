@@ -11,7 +11,7 @@ public class Hippodrome {
 
     public static Hippodrome game;
 
-    public Hippodrome (List<Horse> horses) {
+    public Hippodrome(List<Horse> horses) {
         this.horses = horses;
     }
 
@@ -33,6 +33,7 @@ public class Hippodrome {
         }
 
     }
+
     public void print() {
         for (Horse hors : horses) {
             hors.print();
@@ -42,12 +43,26 @@ public class Hippodrome {
         }
     }
 
+//    public Horse getWinner() {
+//        double maxDistance = 0;
+//        Horse winner = null;
+//        for (Horse hors : horses) {
+//            if (Double.compare(hors.getDistance(), maxDistance) > 0) {
+//                maxDistance = hors.getDistance();
+//                winner = hors;
+//            }
+//        }
+//        return winner;
+//    }
+
+
     public Horse getWinner() {
         horses.sort(Comparator.comparingDouble(Horse::getDistance));
         Collections.reverse(horses);
         return horses.get(0);
 
     }
+
     public void printWinner() {
         System.out.print("Winner is " + getWinner().getName() + "!");
     }
@@ -59,13 +74,8 @@ public class Hippodrome {
         horses.add(new Horse("Victory", 3, 0));
         game = new Hippodrome(horses);
         game.run();
+        game.printWinner();
 
-//        game.getWinner();
-//        game.printWinner();
-//        System.out.println("===============");
-//
-//        for (Horse hors : horses) {
-//            System.out.println(hors.getName() + "\t" + hors.getDistance());
-//        }
     }
+
 }
