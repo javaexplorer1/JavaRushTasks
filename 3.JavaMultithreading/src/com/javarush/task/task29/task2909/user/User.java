@@ -1,17 +1,25 @@
 package com.javarush.task.task29.task2909.user;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class User {
+
     private String name;
+
     private String surname;
+
     private int age;
-
-    private Work work;
-
-    private Address address;
 
     private boolean man;
 
+    private Work work;
 
+    @Setter(AccessLevel.PRIVATE)
+    private Address address;
 
     public User(String name, String surname, int age) {
         this.name = name;
@@ -19,39 +27,8 @@ public class User {
         this.age = age;
     }
 
-    public boolean isMan() {
-        return man;
-    }
 
-    public void setMan(boolean man) {
-        this.man = man;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getCountry() {
+   public String getCountry() {
         return address.getCountry();
     }
 
@@ -69,14 +46,6 @@ public class User {
 
     public String getAddress() {
         return getCountry() + " " + getCity() + " " + address.getHouse();
-    }
-
-    public Work getWork() {
-        return work;
-    }
-
-    public void setWork(Work work) {
-        this.work = work;
     }
 
     public void printInfo() {

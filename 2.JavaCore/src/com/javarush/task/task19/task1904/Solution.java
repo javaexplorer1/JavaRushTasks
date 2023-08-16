@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Solution {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("C:\\Downloads\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1904\\test.txt");
+        File file = new File("C:\\Downloads\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1904\\test1.txt");
         PersonScannerAdapter personScannerAdapter = new PersonScannerAdapter(new Scanner(file));
         for (int i = 0; i < 2; i++) {
             System.out.println(personScannerAdapter.read());

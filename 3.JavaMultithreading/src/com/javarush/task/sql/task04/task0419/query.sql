@@ -1,1 +1,2 @@
-SELECT YEAR(NOW()), MONTH(NOW()), DAYOFYEAR(NOW()), DAYOFMONTH(NOW());
+-- Write your code here:
+SELECT

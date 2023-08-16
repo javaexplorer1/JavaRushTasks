@@ -1,1 +1,1 @@
-SELECT CURDATE(), ADDDATE(NOW(), INTERVAL 3 DAY), SUBDATE(NOW(), INTERVAL 3 DAY);
+-- Write your code here:

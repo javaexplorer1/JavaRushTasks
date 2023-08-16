@@ -1,4 +1,4 @@
-package com.javarush.task.task19.task1902;
+package com.javarush.task.task19.task1903.task1902;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.IOException;
 Адаптер
 */
 
-public class AdapterFileOutputStream implements AmigoStringWriter {
+/*public class AdapterFileOutputStream implements AmigoStringWriter {
 
     private FileOutputStream fileOutputStream;
 
@@ -34,5 +34,5 @@ public class AdapterFileOutputStream implements AmigoStringWriter {
     public void close() throws IOException {
         fileOutputStream.close();
     }
-}
+}*/
 
