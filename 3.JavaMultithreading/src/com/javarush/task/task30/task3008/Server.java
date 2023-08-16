@@ -29,6 +29,7 @@ public class Server {
         ConsoleHelper.writeMessage("Введите порт сервера");
         int port = ConsoleHelper.readInt();
         try (ServerSocket serverSocket = new ServerSocket(port)) {
+//        try (ServerSocket serverSocket = new ServerSocket(port, 0, InetAddress.getByName("192.168.0.204"))) {
             ConsoleHelper.writeMessage("Сервер запущен");
             while (true) {
                 Socket socket = serverSocket.accept();

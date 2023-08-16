@@ -1,6 +1,6 @@
 package com.javarush.task.task21.task2112;
 
-public class FakeConnection {
+public class FakeConnection implements AutoCloseable {
 
     public FakeConnection() {
         System.out.println("Establishing database connection...");
@@ -13,5 +13,10 @@ public class FakeConnection {
 
     public void usefulOperation() {
         System.out.println("Executing useful operation.");
+    }
+
+    @Override
+    public void close() throws Exception {
+        System.out.println("Closing database connection...");
     }
 }
