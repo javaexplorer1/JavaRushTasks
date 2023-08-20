@@ -8,9 +8,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -50,6 +52,37 @@ public class ZipFileManager {
 
                 // Если переданный source не директория и не файл, бросаем исключение
                 throw new PathIsNotFoundException();
+            }
+        }
+    }
+
+    public void extractAll(Path outputFolder) throws Exception {
+        // Проверяем существует ли zip файл
+        if (!Files.isRegularFile(zipFile)) {
+            throw new WrongZipFileException();
+        }
+
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+            // Создаем директорию вывода, если она не существует
+            if (Files.notExists(outputFolder))
+                Files.createDirectories(outputFolder);
+
+            // Проходимся по содержимому zip потока (файла)
+            ZipEntry zipEntry = zipInputStream.getNextEntry();
+
+            while (zipEntry != null) {
+                String fileName = zipEntry.getName();
+                Path fileFullName = outputFolder.resolve(fileName);
+
+                // Создаем необходимые директории
+                Path parent = fileFullName.getParent();
+                if (Files.notExists(parent))
+                    Files.createDirectories(parent);
+
+                try (OutputStream outputStream = Files.newOutputStream(fileFullName)) {
+                    copyData(zipInputStream, outputStream);
+                }
+                zipEntry = zipInputStream.getNextEntry();
             }
         }
     }
@@ -101,33 +134,33 @@ public class ZipFileManager {
         }
     }
 
-    public void extractAll(Path outputFolder) throws Exception {
+    public void removeFiles(List<Path> pathList) throws Exception {
         if (!Files.isRegularFile(zipFile)) {
             throw new WrongZipFileException();
         }
-        if (!Files.notExists(outputFolder)) {
-            Files.createDirectories(outputFolder);
-        }
-        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+        Path tempFile = Files.createTempFile("temp", null);
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(tempFile));
+             ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
             ZipEntry zipEntry = zipInputStream.getNextEntry();
 
             while (zipEntry != null) {
-                Path path = outputFolder.resolve(zipEntry.getName());
-                if (Files.isDirectory(path)) {
-                    Files.createDirectories(path);
-                } else if (Objects.nonNull(path.getParent()) && Files.notExists(path)) {
-                    Files.createDirectories(path.getParent());
-                    Files.createFile(path);
-                    try (OutputStream outputStream = Files.newOutputStream(path)) {
-                        copyData(zipInputStream, outputStream);
-                    }
+                if (pathList.contains(Paths.get(zipEntry.getName()))) {
+                    ConsoleHelper.writeMessage("Файл удален из архива");
+                } else {
+                    zipOutputStream.putNextEntry(zipEntry);
+                    copyData(zipInputStream, zipOutputStream);
+                    zipInputStream.closeEntry();
+                    zipOutputStream.closeEntry();
                 }
                 zipEntry = zipInputStream.getNextEntry();
             }
-            zipInputStream.closeEntry();
-
         }
-
-
+        Files.move(tempFile, zipFile, StandardCopyOption.REPLACE_EXISTING);
     }
+
+    public void removeFile(Path path) throws Exception {
+        removeFiles(Collections.singletonList(path));
+    }
+
+
 }
