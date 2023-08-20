@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -98,5 +99,35 @@ public class ZipFileManager {
         while ((len = in.read(buffer)) > 0) {
             out.write(buffer, 0, len);
         }
+    }
+
+    public void extractAll(Path outputFolder) throws Exception {
+        if (!Files.isRegularFile(zipFile)) {
+            throw new WrongZipFileException();
+        }
+        if (!Files.notExists(outputFolder)) {
+            Files.createDirectories(outputFolder);
+        }
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+            ZipEntry zipEntry = zipInputStream.getNextEntry();
+
+            while (zipEntry != null) {
+                Path path = outputFolder.resolve(zipEntry.getName());
+                if (Files.isDirectory(path)) {
+                    Files.createDirectories(path);
+                } else if (Objects.nonNull(path.getParent()) && Files.notExists(path)) {
+                    Files.createDirectories(path.getParent());
+                    Files.createFile(path);
+                    try (OutputStream outputStream = Files.newOutputStream(path)) {
+                        copyData(zipInputStream, outputStream);
+                    }
+                }
+                zipEntry = zipInputStream.getNextEntry();
+            }
+            zipInputStream.closeEntry();
+
+        }
+
+
     }
 }
