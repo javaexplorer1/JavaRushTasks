@@ -5,12 +5,13 @@ import java.util.List;
 
 public class Snake {
 
-    private List<SnakeSection> sections = new ArrayList<>();
+    private List<SnakeSection> sections = new ArrayList<>();;
     private boolean isAlive;
     private SnakeDirection direction;
 
     public Snake(int x, int y) {
         SnakeSection section = new SnakeSection(x, y);
+       
         sections.add(section);
         isAlive = true;
     }
