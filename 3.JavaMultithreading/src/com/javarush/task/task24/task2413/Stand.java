@@ -7,7 +7,7 @@ public class Stand extends BaseObject {
 
     @Override
     public void draw(Canvas canvas) {
-
+        
     }
 
     @Override
