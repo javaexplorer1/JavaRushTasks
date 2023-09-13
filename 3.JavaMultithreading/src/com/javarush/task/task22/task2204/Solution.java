@@ -13,6 +13,6 @@ public class Solution {
     }
 
     public static String getFormattedString() {
-        return "20 / 7 = %.2f %nExp = %1.2e";
+        return "20 / 7 = %.2f%nExp = %1.2e";
     }
 }
