@@ -1,6 +1,8 @@
 package com.javarush.task.task23.task2312;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     private int width;
@@ -93,6 +95,29 @@ public class Room {
         //Рисуем все кусочки змеи
         //Рисуем мышь
         //Выводим все это на экран
+        char[][] field = new char[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                field[i][j] = '.';
+            }
+        }
+
+        List<SnakeSection> snakeSectionList = new ArrayList<>(snake.getSections());
+        for (SnakeSection snakeSection : snakeSectionList) {
+            field[snakeSection.getX()][snakeSection.getY()] = 'x';
+        }
+
+        field[snake.getX()][snake.getY()] = snake.isAlive() ? 'X' : 'R';
+
+        field[mouse.getX()][mouse.getY()] = '^';
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(field[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     public void eatMouse() {
@@ -117,7 +142,7 @@ public class Room {
         // делаем паузу, длинна которой зависит от длинны змеи
         int numberOfSections = snake.getSections().size();
         if (numberOfSections == 1) {
-        Thread.sleep(500);
+            Thread.sleep(500);
         } else if (numberOfSections <= 11) {
             Thread.sleep(500 - 20 * (numberOfSections - 1));
         } else if (numberOfSections <= 15) {
