@@ -51,14 +51,14 @@ public class Dog implements Pet {
 
             @Override
             public String say() {
-                if (i < 0) {
+                if (i < 1) {
                     return getName() + " спит.";
                 } else {
                     String temp = "";
                     for (int j = 0; j < i; j++) {
                         temp += "а";
                     }
-                    return getName() + " лает г" + "в!";
+                    return getName() + " лает г" + temp + "в! " + formatter.format(new Date());
                 }
             }
         }
