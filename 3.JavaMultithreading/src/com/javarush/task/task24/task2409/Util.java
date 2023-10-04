@@ -51,13 +51,10 @@ public class Util {
                 return size;
             }
 
-            @Override
-            public abstract String getTM();
-
-            @Override
+             @Override
             public String toString() {
 
-                return  getTM() + "{" +
+                return  getClass().getSimpleName() + "{" +
                         "id=" + id +
                         ", length=" + length +
                         ", size=" + size +
@@ -129,5 +126,10 @@ public class Util {
         Company(String name) {
             this.fullName = name;
         }
+    }
+
+    {
+        Company denim = Company.valueOf("COLIN'S");
+
     }
 }
