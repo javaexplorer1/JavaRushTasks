@@ -1,5 +1,6 @@
 package com.javarush.task.task25.task2503;
 
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +10,7 @@ public enum Column implements Columnable {
     BankName("Bank Name"),
     AccountNumber("Account Number"),
     Amount("Available Amount");
+
 
     private String columnName;
 
@@ -50,10 +52,16 @@ public enum Column implements Columnable {
      * @return список колонок
      */
     public static List<Column> getVisibleColumns() {
-        List<Column> result = new LinkedList<>();
+        int count = 0;
+        for (int i : realOrder) {
+            if (i != -1) {
+                count++;
+            }
+        }
+        List<Column> result = new LinkedList<>(Arrays.asList(new Column[count]));
         for (int i = 0; i < realOrder.length; i++) {
             if (realOrder[i] >= 0) {
-                result.add(realOrder[i], Column.values()[i]);
+                result.set(realOrder[i], Column.values()[i]);
             }
         }
         return result;
@@ -73,10 +81,11 @@ public enum Column implements Columnable {
     @Override
     public void hide() {
         int index = this.ordinal();
+        int volumeValue = realOrder[index];
         realOrder[index] = -1;
         for (int i = 0; i < realOrder.length; i++) {
-            if (realOrder[i] != -1 && realOrder[i] > index) {
-                realOrder[i]++;
+            if (realOrder[i] != -1 && realOrder[i] > volumeValue) {
+                realOrder[i]--;
             }
         }
     }

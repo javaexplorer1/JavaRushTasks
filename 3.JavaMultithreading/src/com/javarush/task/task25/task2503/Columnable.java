@@ -24,4 +24,5 @@ public interface Columnable {
      * @return порядок константы в энуме
      */
     int ordinal();
+
 }
