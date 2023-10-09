@@ -4,8 +4,8 @@ public class LoggingStateThread extends Thread {
     private Thread thread;
 
     public LoggingStateThread(Thread thread) {
-        this.thread = thread;
-        setDaemon(true);
+              this.thread = thread;
+              setDaemon(true);
     }
 
     @Override
@@ -20,7 +20,6 @@ public class LoggingStateThread extends Thread {
             } else if (newState.equals(State.TERMINATED)) {
                 break;
             }
-
         }
     }
 }
