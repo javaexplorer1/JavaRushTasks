@@ -18,7 +18,7 @@ public class Solution {
         public MyThread(String secretKey) {
             this.secretKey = secretKey;
             setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
-            setDaemon(true);
+//            setDaemon(true);
         }
 
         @Override
@@ -26,22 +26,20 @@ public class Solution {
             throw new NullPointerException("it's an example");
         }
 
-        private class MyUncaughtExceptionHandler implements UncaughtExceptionHandler {
+        private class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
             public MyUncaughtExceptionHandler() {
             }
 
             public void uncaughtException(Thread t, Throwable e) {
+                String formatMessage = String.format("%s, %s, %s", secretKey, t.getName(), e.getMessage());
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                String format = String.format("%s, #s, %s", secretKey, t.getName(), e.getMessage());
-
-                System.out.println(format);
-
+                System.out.println(formatMessage);
             }
-
+        }
     }
 
 
