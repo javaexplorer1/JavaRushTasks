@@ -14,9 +14,9 @@ public class Solution {
 
         System.out.printf("Транзакция №%d: списание $%d со счета №%d. Баланс: %d.%n", transactionNumber, amount, from.getNumber(), from.getBalance());
         from.setBalance(from.getBalance() - amount);
-        Thread.yield();
         System.out.printf("Транзакция №%d: зачисление $%d на счет №%d. Баланс: %d.%n", transactionNumber, amount, to.getNumber(), to.getBalance());
         to.setBalance(to.getBalance() + amount);
+        Thread.yield();
     }
 
     static class Account {
