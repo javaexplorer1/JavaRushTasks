@@ -19,13 +19,19 @@ public class Solution {
         getTypes(Solution.class.getDeclaredField("field").getGenericType()).forEach(System.out::println);
     }
 
-    public static Set<Type> getTypes(Type type) throws NoSuchFieldException {
-        Set<Type> types = new HashSet<>();
-        Class<? extends Type> aClass = type.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-        for (Field field: declaredFields) {
-            types.add(field.getGenericType());
+    public static Set<Type> getTypes(Type type) {
+        Set<Type> set = new LinkedHashSet<>();
+        if (type instanceof ParameterizedType paramType) {
+            set.add(paramType.getRawType());
+//            Type[] types = paramType.getActualTypeArguments();
+//            for (Type aType : types) {
+//                Set<Type> typeSet = getTypes(aType);
+//                set.addAll(typeSet);
+//            }
+            Arrays.stream(paramType.getActualTypeArguments()).map(Solution::getTypes).forEach(types -> set.addAll(types));
+        } else {
+            set.add(type);
         }
-        return types;
+        return set;
     }
 }
